@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: input_stock_prices
+    description: "Raw table from Snowflake containing 180-day historical stock prices"
+
+  - name: moving_avg_7_day
+    description: "7-day moving average of close price for each stock"
+    columns:
+      - name: stock_symbol
+        description: "Stock ticker symbol"
+        tests:
+          - not_null
+      - name: date
+        description: "Date of stock entry"
+        tests:
+          - not_null
+      - name: moving_avg_7_day
+        description: "7-day moving average of the closing price"
+
+  - name: avg_close_by_symbol
+    description: "Average close price per stock symbol"
+    columns:
+      - name: stock_symbol
+        description: "Stock ticker symbol"
+        tests:
+          - not_null
+      - name: avg_close_price
+        description: "Average of close price for each stock"
